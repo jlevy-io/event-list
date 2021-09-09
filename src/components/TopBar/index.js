@@ -1,10 +1,18 @@
 import React from "react";
-import Container from "./styles";
+import { Button } from "@material-ui/core";
+import Logo from "assets/location.svg";
+import Container, { Inner, LogoWrapper } from "./styles";
 
 const TopBar = () => {
   return (
     <Container>
-      <h1>Event List</h1>
+      <Inner>
+        <LogoWrapper>
+          <img src={Logo} alt="Logo" />
+          <h1>Event List</h1>
+        </LogoWrapper>
+        <Button color="primary">Log In</Button>
+      </Inner>
     </Container>
   );
 };

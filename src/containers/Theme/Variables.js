@@ -19,6 +19,8 @@ const theme = {
     darkText50: "rgba(0,0,0,0.5)",
   },
   filters: {
+    whiteFilter:
+      "invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)",
     primaryFilter:
       "invert(66%) sepia(75%) saturate(5326%) hue-rotate(179deg) brightness(94%) contrast(92%)",
     primaryHoverFilter:

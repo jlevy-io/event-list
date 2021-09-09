@@ -9,14 +9,19 @@ import {
   useHistory,
 } from "react-router-dom";
 */
+
 import useSWR from "swr";
 import { DateTime } from "luxon";
 
 // Components
 import TopBar from "components/TopBar";
 import Loader from "components/Loader";
+
 // Services
 import API from "services/api";
+
+// Custom Hooks
+import useZipcode from "services/hooks/useZipcode";
 
 // Styles
 import Container, { View, LoaderWrapper } from "./styles";
@@ -36,12 +41,15 @@ const initialParams = {
 };
 
 const App = () => {
+  const { zipcode } = useZipcode();
   // const history = useHistory();
   // const location = useLocation();
 
   // Local state
   const [events, setEvents] = useState([]);
-  const [params, setParams] = useState(initialParams);
+  const [params, setParams] = useState(
+    zipcode ? { ...initialParams, zipcode } : initialParams
+  );
   const { page } = params;
 
   // Fetch events
@@ -59,14 +67,13 @@ const App = () => {
 
   useEffect(() => {
     if (eventsData[0]) {
-      setEvents(() =>
+      setEvents((events) =>
         page === 1 ? [...eventsData] : [...events, ...eventsData]
       );
     }
 
     return () => null;
-    // eslint-disable-next-line
-  }, [eventsData]);
+  }, [eventsData, page]);
 
   return (
     <Container>

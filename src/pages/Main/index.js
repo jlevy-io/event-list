@@ -10,7 +10,7 @@ const itemHeight = 446;
 
 const Main = ({ events, hasNextPage, loading, loadNextPage }) => {
   const { width: windowWidth } = useWindowDimensions();
-  const isMobile = useMediaQuery({ maxWidth: 414, orientation: "portrait" });
+  const isMobile = useMediaQuery({ maxWidth: 600, orientation: "portrait" });
 
   return (
     <Container>
@@ -26,18 +26,19 @@ const Main = ({ events, hasNextPage, loading, loadNextPage }) => {
         {({
           id,
           title,
-          summary,
           description,
           featured_image_url,
           timeslots,
+          ...details
         }) => (
           <EventCard
             key={`event-${id}`}
+            details={details}
             imageWidth={isMobile ? windowWidth * 0.96 : itemWidth - 32}
             {...{
+              id,
               isMobile,
               title,
-              summary,
               description,
               featured_image_url,
               timeslots,

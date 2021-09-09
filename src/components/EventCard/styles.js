@@ -10,7 +10,7 @@ const Container = styled.section`
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.5s ease;
-  cursor: pointer;
+  cursor: default;
   ${({ isMobile }) =>
     !isMobile &&
     `&:hover {
@@ -52,7 +52,8 @@ export const DateTime = styled.div`
   width: 100%;
   margin-bottom: 5px;
   span {
-    font-size: 13px;
+    font-family: "Quicksand";
+    font-size: 12px;
     color: ${({ theme }) => theme.colors.darkText80};
     word-break: ${({ breakAll }) => (breakAll ? "break-all" : "break-word")};
     -webkit-line-clamp: ${({ maxLines }) => maxLines || 1};
@@ -62,11 +63,11 @@ export const DateTime = styled.div`
 export const EventTitle = styled.div`
   width: 100%;
   min-height: 44px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   h4 {
-    all: unset;
+    margin: 0;
     span {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: ${({ theme }) => theme.colors.darkText};
       word-break: ${({ breakAll }) => (breakAll ? "break-all" : "break-word")};
@@ -80,7 +81,8 @@ export const EventDescription = styled.div`
   p {
     all: unset;
     span {
-      font-size: 14px;
+      font-family: "Quicksand";
+      font-size: 15px;
       color: ${({ theme }) => theme.colors.darkText};
       word-break: ${({ breakAll }) => (breakAll ? "break-all" : "break-word")};
       -webkit-line-clamp: ${({ maxLines }) => maxLines || 1};
@@ -90,8 +92,20 @@ export const EventDescription = styled.div`
 
 export const ButtonRow = styled.div`
   display: flex;
+  padding: 0px 20px;
   justify-content: center;
   margin-bottom: 15px;
+`;
+
+export const NextIcon = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 1rem;
+  img {
+    height: 12px;
+    width: auto;
+    filter: ${({ theme }) => theme.filters.whiteFilter};
+  }
 `;
 
 export default Container;

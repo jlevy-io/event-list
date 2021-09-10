@@ -3,7 +3,6 @@ import "react-app-polyfill/stable";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 import { SWRConfig } from "swr";
 
 import Theme from "containers/Theme";
@@ -16,9 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <SWRConfig value={{ revalidateOnFocus: false }}>
       <Theme>
-        <Router>
-          <App />
-        </Router>
+        <App />
       </Theme>
     </SWRConfig>
   </React.StrictMode>,

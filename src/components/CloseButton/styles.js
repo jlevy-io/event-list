@@ -26,7 +26,7 @@ const Container = styled.div`
     width: ${({ buttonSize }) => buttonSize}px;
     position: absolute;
     margin-top: ${({ buttonSize }) => buttonSize / 2}px;
-    background-color: #000000;
+    background-color: ${({ buttonColor }) => buttonColor};
     border-radius: 2px;
     transform: rotate(45deg);
     transition: all 0.3s ease-in;
@@ -37,7 +37,7 @@ const Container = styled.div`
     width: ${({ buttonSize }) => buttonSize}px;
     position: absolute;
     margin-top: ${({ buttonSize }) => buttonSize / 2}px;
-    background-color: #000000;
+    background-color: ${({ buttonColor }) => buttonColor};
     border-radius: 2px;
     transform: rotate(-45deg);
     transition: all 0.3s ease-in;

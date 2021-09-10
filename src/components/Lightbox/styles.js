@@ -1,6 +1,6 @@
 import styled from "styled-components";
-
-const Container = styled.div`
+import { motion } from "framer-motion";
+const Container = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;

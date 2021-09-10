@@ -2,11 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 90vw;
-  @media only screen and (max-width: 600px) {
-    width: 100vw;
-  }
+  justify-content: center;
+  border: 1px solid #ccc;
 `;
 
 export default Container;

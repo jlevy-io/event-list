@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  MarkerClusterer,
+} from "@react-google-maps/api";
 import Loader from "components/Loader";
 import Container from "./styles";
 
 const { REACT_APP_GOOGLE_API_KEY: googleKey } = process.env;
 
-function MapView({
+function ClusterMap({
   mapWidth = 400,
   mapHeight = 300,
-  latitude = 0,
-  longitude = 0,
+  mapLocations = [],
   isMobile = false,
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -22,9 +26,15 @@ function MapView({
         height: `${mapHeight}px`,
       };
 
-  const center = {
-    lat: latitude,
-    lng: longitude,
+  const center = mapLocations[0] || { lat: 40.7128, lng: 74.006 };
+  const mapOptions = {
+    disableDefaultUI: true,
+    zoomControl: true,
+  };
+  const clusterOptions = {
+    averageCenter: true,
+    enableRetinaIcons: true,
+    maxZoom: 18,
   };
 
   return (
@@ -38,15 +48,24 @@ function MapView({
           <div>Oops! Something went wrong.</div>
         ) : loaded ? (
           <GoogleMap
+            id="cluster-map"
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={16}
-            options={{
-              disableDefaultUI: true,
-              zoomControl: true,
-            }}
+            zoom={10}
+            options={mapOptions}
           >
-            <Marker position={center} />
+            <MarkerClusterer options={clusterOptions}>
+              {(clusterer) =>
+                mapLocations.map((location, index) => (
+                  <Marker
+                    key={`marker-${index + 1}`}
+                    position={location}
+                    title={location.title}
+                    clusterer={clusterer}
+                  />
+                ))
+              }
+            </MarkerClusterer>
           </GoogleMap>
         ) : (
           <Loader />
@@ -56,4 +75,4 @@ function MapView({
   );
 }
 
-export default React.memo(MapView);
+export default React.memo(ClusterMap);

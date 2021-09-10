@@ -29,3 +29,8 @@ code {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 700;
 }
+
+[class^="MuiButton"] {
+  font-family: "Quicksand", sans-serif !important;
+  font-weight: 700;
+}

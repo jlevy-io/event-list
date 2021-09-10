@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback } from "react";
 import useGeolocation from "react-hook-geolocation";
 import API from "services/api";
 
-export default function useZipcode(enabled) {
+export default function useZipcode() {
   const geolocation = useGeolocation();
   const { latitude, longitude } = geolocation || {};
 
   const [error, setError] = useState(false);
   const [zipcode, setZipcode] = useState(
-    enabled ? () => JSON.parse(localStorage.getItem("zipcode")) : ""
+    () => JSON.parse(localStorage.getItem("zipcode")) || ""
   );
 
   const findZipcode = (values) => {
@@ -55,10 +55,10 @@ export default function useZipcode(enabled) {
   }, [latitude, longitude]);
 
   useEffect(() => {
-    if (!zipcode && enabled) {
+    if (!zipcode) {
       updateZipcode();
     }
-  }, [zipcode, updateZipcode, enabled]);
+  }, [zipcode, updateZipcode]);
 
   return { zipcode, setZipcode, error };
 }

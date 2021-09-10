@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { Button } from "@material-ui/core";
 import LazyImage from "components/LazyImage";
 import Loader from "components/Loader";
@@ -102,30 +103,32 @@ const EventCard = ({
           </Button>
         </ButtonRow>
       </CardWrapper>
-      {modal && (
-        <Suspense
-          fallback={
-            <Lightbox>
-              <Loader full />
-            </Lightbox>
-          }
-        >
-          <DetailsCard
-            isOpen={modal}
-            onClose={() => showModal(false)}
-            {...{
-              id,
-              isMobile,
-              title,
-              description,
-              featured_image_url,
-              imageWidth,
-              timeslots,
-              details,
-            }}
-          />
-        </Suspense>
-      )}
+      <AnimatePresence>
+        {modal && (
+          <Suspense
+            fallback={
+              <Lightbox>
+                <Loader full />
+              </Lightbox>
+            }
+          >
+            <DetailsCard
+              isOpen={modal}
+              onClose={() => showModal(false)}
+              {...{
+                id,
+                isMobile,
+                title,
+                description,
+                featured_image_url,
+                imageWidth,
+                timeslots,
+                details,
+              }}
+            />
+          </Suspense>
+        )}
+      </AnimatePresence>
     </Container>
   );
 };

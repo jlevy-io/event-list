@@ -26,6 +26,7 @@ const InfiniteList = ({
       marginTop: isMobile ? theme.spacing(1) : theme.spacing(2),
       marginBottom: isMobile ? theme.spacing(1) : theme.spacing(2),
       justifyContent: "center",
+      width: "90vw",
     },
     gridItem: {
       paddingTop: theme.spacing(2),
@@ -86,6 +87,7 @@ const InfiniteList = ({
 
                 return !hasMore || allItemsLoaded;
               }}
+              threshold={10}
               loadMoreRows={loadMoreRows}
             >
               {({ onRowsRendered, registerChild }) => (

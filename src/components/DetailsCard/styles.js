@@ -1,20 +1,26 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
+  ${({ isMobile }) => (isMobile ? "flex: 1;" : "")}
   flex-direction: column;
-  width: ${({ isMobile }) => (isMobile ? "100vw" : "calc(70vw - 100px)")};
-  height: ${({ isMobile }) => (isMobile ? "100vh" : "calc(90vh - 100px)")};
+  width: ${({ isMobile }) => (isMobile ? "100vw" : "calc(50vw - 100px)")};
+  ${({ isMobile }) => (isMobile ? "" : "min-width: 600px;")}
+  height: ${({ isMobile }) => (isMobile ? "100vh" : "calc(95vh - 100px)")};
   background-color: #fff;
   border-radius: ${({ isMobile }) => (isMobile ? "0px" : "32px")};
   overflow-y: auto;
   overflow-x: hidden;
   padding: ${({ isMobile }) => (isMobile ? "10px" : "50px")};
 
-  &::after {
-    flex: 0 0 100px;
+  ${({ isMobile }) =>
+    isMobile
+      ? `&::after {
+    flex: 0 0 200px;
     content: "";
-  }
+  }`
+      : ""}
 
   & {
     scrollbar-width: auto;
@@ -95,7 +101,8 @@ export const InfoSpan = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  // flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  flex-direction: column;
   gap: 25px;
   width: 100%;
   word-break: break-word;

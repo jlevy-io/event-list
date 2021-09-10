@@ -1,4 +1,5 @@
 import React from "react";
+import Lightbox from "components/Lightbox";
 import LoaderElement, { Container } from "./styles";
 
 const Loader = ({
@@ -9,12 +10,23 @@ const Loader = ({
   position = "center",
 }) => {
   return loading ? (
-    <Container className={full ? "full" : ""} {...{ position }}>
-      <LoaderElement className={small ? "small" : ""}>
-        <div></div>
-        <div></div>
-      </LoaderElement>
-    </Container>
+    <>
+      {full ? (
+        <Lightbox key={children}>
+          <LoaderElement className={small ? "small" : ""}>
+            <div></div>
+            <div></div>
+          </LoaderElement>
+        </Lightbox>
+      ) : (
+        <Container {...{ position }}>
+          <LoaderElement className={small ? "small" : ""}>
+            <div></div>
+            <div></div>
+          </LoaderElement>
+        </Container>
+      )}
+    </>
   ) : (
     children
   );

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Fragment } from "react";
 import { useResizeDetector } from "react-resize-detector";
 import { lock, clearBodyLocks } from "tua-body-scroll-lock";
 import getScrollbarWidth from "get-scrollbar-width";
@@ -27,6 +27,7 @@ import Container, {
 const scrollbarWidth = getScrollbarWidth();
 
 const DetailsCard = ({
+  id,
   isOpen,
   onClose,
   isMobile,
@@ -127,8 +128,12 @@ const DetailsCard = ({
   });
 
   return (
-    <Lightbox {...{ isOpen, onClose }}>
+    <Lightbox key={id} animateKey={id} {...{ isOpen, onClose }}>
       <Container
+        key={id}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { delay: 0.2 } }}
+        exit={{ opacity: 0 }}
         id="details-container"
         {...{ isMobile }}
         onClick={(e) => e.stopPropagation()}
@@ -234,7 +239,7 @@ const DetailsCard = ({
                 {timeslots && timeslots[0]
                   ? timeslots.map(
                       ({ id, start_date, end_date, is_full }, index) => (
-                        <>
+                        <Fragment key={id}>
                           {timeslots.length > 1 ? (
                             <div>
                               <h4
@@ -261,7 +266,7 @@ const DetailsCard = ({
                               }`}
                             </span>
                           </InfoSpan>
-                        </>
+                        </Fragment>
                       )
                     )
                   : null}

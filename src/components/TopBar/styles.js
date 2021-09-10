@@ -6,7 +6,7 @@ const Container = styled.header`
   left: 0;
   display: flex;
   width: 100vw;
-  min-height: 5vh;
+  min-height: 8vh;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #ccc;
@@ -22,7 +22,7 @@ const Container = styled.header`
 export const Inner = styled.div`
   display: flex;
   align-items: center;
-  width: 80vw;
+  width: ${({ isMobile }) => (isMobile ? "96vw" : "80vw")};
   justify-content: space-between;
 `;
 
@@ -30,12 +30,19 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   img {
-    height: 2.5vh;
+    height: 25px;
     width: auto;
     filter: ${({ theme }) => theme.filters.primaryFilter};
     object-fit: contain;
-    margin-right: 10px;
+    margin-right: ${({ isMobile }) => (isMobile ? "5px" : "10px")};
   }
+`;
+
+export const Controls = styled.div`
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+  padding-right: 25px;
 `;
 
 export default Container;

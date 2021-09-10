@@ -21,10 +21,9 @@ const Container = styled.div`
 
 export const IconWrapper = styled.div`
   display: flex;
-  margin-bottom: 20px;
   img {
     filter: ${({ theme }) => theme.filters.dangerFilter};
-    width: 5vmin;
+    width: 50px;
     height: auto;
   }
 `;

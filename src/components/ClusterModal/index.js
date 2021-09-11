@@ -44,7 +44,7 @@ const ClusterModal = ({ mapLocations, isOpen, onClose, isMobile }) => {
         <CloseButton
           onClick={onClose}
           buttonSize={isMobile ? 25 : 40}
-          buttonColor="#ffffff"
+          buttonColor={isMobile ? "#000000" : "#ffffff"}
         />
       </CloseWrapper>
       <Container

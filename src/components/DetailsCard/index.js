@@ -15,6 +15,7 @@ import Container, {
   Header,
   TitleSection,
   CloseWrapper,
+  CloseWrapperMobile,
   TitleDetails,
   InfoSpan,
   Content,
@@ -129,6 +130,16 @@ const DetailsCard = ({
 
   return (
     <Lightbox key={id} animateKey={id} {...{ isOpen, onClose }}>
+      {!isMobile ? (
+        <CloseWrapper>
+          <CloseButton
+            onClick={onClose}
+            buttonSize={40}
+            buttonColor={"#ffffff"}
+            {...{ isMobile }}
+          />
+        </CloseWrapper>
+      ) : null}
       <Container
         key={id}
         initial={{ opacity: 0 }}
@@ -138,6 +149,16 @@ const DetailsCard = ({
         {...{ isMobile }}
         onClick={(e) => e.stopPropagation()}
       >
+        {isMobile ? (
+          <CloseWrapperMobile>
+            <CloseButton
+              onClick={onClose}
+              buttonSize={25}
+              buttonColor={"#000000"}
+              {...{ isMobile }}
+            />
+          </CloseWrapperMobile>
+        ) : null}
         <Header>
           <TitleSection {...{ isMobile }}>
             <h1 className="condensed">
@@ -159,9 +180,6 @@ const DetailsCard = ({
               ) : null}
             </TitleDetails>
           </TitleSection>
-          <CloseWrapper {...{ isMobile }}>
-            <CloseButton onClick={onClose} buttonSize={isMobile ? 25 : 40} />
-          </CloseWrapper>
         </Header>
         <Content {...{ isMobile }}>
           <LeftSection>

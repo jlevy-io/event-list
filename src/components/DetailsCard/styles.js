@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 const Container = styled(motion.div)`
   display: flex;
+  position: relative;
   ${({ isMobile }) => (isMobile ? "flex: 1;" : "")}
   flex-direction: column;
   width: ${({ isMobile }) => (isMobile ? "100vw" : "calc(50vw - 100px)")};
@@ -13,6 +14,14 @@ const Container = styled(motion.div)`
   overflow-y: auto;
   overflow-x: hidden;
   padding: ${({ isMobile }) => (isMobile ? "10px" : "50px")};
+
+  ${({ isMobile }) =>
+    isMobile
+      ? `&::before {
+    flex: 0 0 20px;
+    content: "";
+  }`
+      : ""}
 
   ${({ isMobile }) =>
     isMobile
@@ -54,8 +63,7 @@ export const Header = styled.div`
 export const TitleSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
-  padding-right: 10px;
+  width: 100%;
   h1 {
     font-size: ${({ isMobile }) => (isMobile ? "1.25rem" : "2rem")};
     margin-top: 0;
@@ -64,9 +72,13 @@ export const TitleSection = styled.div`
 `;
 
 export const CloseWrapper = styled.div`
+  position: ${({ isMobile }) => (isMobile ? "" : "fixed")};
+  top: 5vh;
+  right: 5vw;
+`;
+
+export const CloseWrapperMobile = styled.div`
   display: flex;
-  width: 5%;
-  padding-right: ${({ isMobile }) => (isMobile ? "10px" : "0px")};
   justify-content: flex-end;
 `;
 
